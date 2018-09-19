@@ -1,0 +1,49 @@
+app:
+  datasource:
+      name: bait_thirdparty_service
+      host: 127.0.0.1
+      username: root
+      password: ZSaIr3PSqzTE9cpXqqBmYa+1ikaZj3pywsbvlS2lcnnD8mSDnvM857jrPCdiJhMqyDS5ZZEZTgKpMB+RAQ7Feg==
+      druid:
+        public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKfqo/6z8zsQBDZw4g2P6qcnXY9tXdLh9r8YFGEYrnWtKBntr2Wc6tGjabIg+OkFcPRTQRTf5GInfsv/ZfMobrMCAwEAAQ==
+
+server:
+  port: 9093
+
+#app:
+#  datasource:
+#      name: bait_thirdparty_service
+#      host: 127.0.0.1
+#      port: 10000
+#      username: bait
+#      password: XbuxY7wmohro1e+SBAMZdQJvRW6FyIacOXA/yiQcP5Eb5GFB+H+mxYw4bkeBW1rVE7b/cokdeXxQFyI3kmuQFw==
+#      druid:
+#        public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKcKaHQJ+uux1laZ6Xskzrj2RIbxeBOuH34+6V40dUEkxWAE6oSpL4xdXhoUW2P0aLqSFstDrhWSAACvHOg0N1ECAwEAAQ==
+
+logging:
+  level:
+    org.axonframework: debug
+    cn.vpclub: debug
+
+system:
+  url:
+    productDetailUrl: http://192.168.240.126:9093/productDetails/selectProductByCode
+    youZanLogicOrg: http://183.224.41.189/caiyun/youzan/couriers
+    youZanLogicNum: http://183.224.41.189/caiyun/youzan/logisticInfo
+    youZanRefunPayAgree: http://183.224.41.189/caiyun/youzan/aggreeRefund
+    youZanRefunPayRefuse: http://183.224.41.189/caiyun/youzan/refuseRefund
+    youZanRefunGoodAgree: http://183.224.41.189/caiyun/youzan/aggreeReturnGoods
+    youZanRefunGoodRefuse: http://183.224.41.189/caiyun/youzan/refuseReturnGoods
+    smsSend:
+#system:
+#  url:
+#    productDetailUrl: http://ekprod.ynydhlw.com/bait/youzanproduct/query/productDetails/selectProductByCode
+#    youZanLogicOrg: http://183.224.41.188/caiyun/youzan/couriers
+#    youZanLogicNum: http://183.224.41.188/caiyun/youzan/logisticInfo
+#    youZanRefunPayAgree: http://183.224.41.188/caiyun/youzan/aggreeRefund
+#    youZanRefunPayRefuse: http://183.224.41.188/caiyun/youzan/refuseRefund
+#    youZanRefunGoodAgree: http://183.224.41.188/caiyun/youzan/aggreeReturnGoods
+#    youZanRefunGoodRefuse: http://183.224.41.188/caiyun/youzan/refuseReturnGoods
+#    smsSend:
+pay:
+  payServerUrl: https://act.ynicity.cn:50020/bpg/rpg/service

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.vpclub.youzanorder.mapper.SubOrderMapper">
+    <resultMap id="BaseResultMap" type="cn.vpclub.youzanorder.entity.SubOrder">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="outer_item_id" jdbcType="VARCHAR" property="outerItemId"/>
+        <result column="total_fee" jdbcType="VARCHAR" property="totalFee"/>
+        <result column="state_str" jdbcType="VARCHAR" property="stateStr"/>
+        <result column="province" jdbcType="VARCHAR" property="province"/>
+        <result column="city" jdbcType="VARCHAR" property="city"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="remarks" jdbcType="VARCHAR" property="remarks"/>
+        <result column="created_by" jdbcType="BIGINT" property="createdBy"/>
+        <result column="created_time" jdbcType="BIGINT" property="createdTime"/>
+        <result column="updated_by" jdbcType="BIGINT" property="updatedBy"/>
+        <result column="updated_time" jdbcType="BIGINT" property="updatedTime"/>
+        <result column="deleted" jdbcType="INTEGER" property="deleted"/>
+        <result column="user_phone" jdbcType="VARCHAR" property="userPhone"/>
+        <result column="openid" jdbcType="VARCHAR" property="openId"/>
+        <result column="base_order_id" jdbcType="VARCHAR" property="baseOrderId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="pay_status" jdbcType="VARCHAR" property="payStatus"/>
+        <result column="pay_time" jdbcType="BIGINT" property="payTime"/>
+        <result column="order_time" jdbcType="BIGINT" property="orderTime"/>
+        <result column="deliver_status" jdbcType="VARCHAR" property="deliverStatus"/>
+        <result column="order_channel" jdbcType="INTEGER" property="orderChannel"/>
+        <result column="batch_no" jdbcType="VARCHAR" property="batchNo"/>
+        <result column="buyer_message" jdbcType="VARCHAR" property="buyerMessage"/>
+        <result column="refund_status" jdbcType="TINYINT" property="refundStatus"/>
+        <result column="pay_type" jdbcType="VARCHAR" property="payType"/>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,outer_item_id, total_fee, state_str,province, city, phone, address,
+        remarks, created_by,
+        created_time, updated_by, updated_time, deleted,user_phone,openid,base_order_id,name,
+        pay_status,pay_time,order_time,deliver_status,order_channel,batch_no,buyer_message,refund_status,pay_type
+    </sql>
+
+    <sql id="whereCondition">
+        <where>
+            <if test="outerItemId !=null and outerItemId != ''">
+                and outer_item_id = #{outerItemId,jdbcType=VARCHAR}
+            </if>
+            and deleted = 1
+            <if test="phone !=null and phone != ''">
+                and phone = #{phone,jdbcType=VARCHAR}
+            </if>
+            <if test=" id != null and id != ''">
+                and id = #{id, jdbcType=BIGINT}
+            </if>
+            <if test="stateStr !=null and stateStr != ''">
+                and state_str = #{stateStr,jdbcType=VARCHAR}
+            </if>
+            <if test="baseOrderId !=null and baseOrderId != ''">
+                and base_order_id = #{baseOrderId,jdbcType=VARCHAR}
+            </if>
+            <if test="startTime !=null and startTime != ''">
+                and order_time &gt;= #{startTime,jdbcType=BIGINT}
+            </if>
+            <if test="endTime !=null and endTime != ''">
+                and order_time &lt;= #{endTime,jdbcType=BIGINT}
+            </if>
+        </where>
+    </sql>
+    <select id="findDataByPageParam" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sub_order
+        <include refid="whereCondition"/>
+        <!-- 优先排序需要卖家处理的退款订单 -->
+        ORDER by refund_status =1 DESC ,created_time desc
+        <if test="startRow!=null and pageSize!=null">
+            LIMIT #{startRow}, #{pageSize}
+        </if>
+    </select>
+
+
+    <select id="findDataTotalByPageParam" resultType="java.lang.Integer">
+        select count(1) from sub_order
+        <include refid="whereCondition"/>
+    </select>
+
+    <update id="updateLogisticsStatusBatch" parameterType="java.util.List" >
+        update sub_order o set o.state_str='待收货',deliver_status='已发货' where id in
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+            #{item,jdbcType=BIGINT}
+        </foreach>
+         and  state_str='待发货' and not exists
+        (select id from product_info p where
+          p.sub_order_id in
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+            #{item,jdbcType=BIGINT}
+        </foreach>
+         and o.id=p.sub_order_id and p.deliver_status='未发货');
+    </update>
+</mapper>

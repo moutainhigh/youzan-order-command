@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.vpclub.test.product.adapter.mapper.RefundInfoMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="cn.vpclub.youzanorder.entity.RefundInfo">
+		<id column="id" property="id" />
+		<result column="sub_order_id" property="subOrderId" />
+		<result column="product_id" property="productId" />
+		<result column="tid" property="tid" />
+		<result column="oid" property="oid" />
+		<result column="refund_id" property="refundId" />
+		<result column="refund_state" property="refundState" />
+		<result column="last_refund_state" property="lastRefundState" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="refunded_fee" property="refundedFee" />
+		<result column="refund_type" property="refundType" />
+		<result column="refund_reason" property="refundReason" />
+		<result column="pay_type" property="payType" />
+		<result column="refund_msg" property="refundMsg" />
+		<result column="refun_log_num" property="refunLogNum" />
+		<result column="refun_log_org" property="refunLogOrg" />
+		<result column="refun_phone" property="refunPhone" />
+		<result column="refun_name" property="refunName" />
+		<result column="refun_address" property="refunAddress" />
+	</resultMap>
+
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+        id, sub_order_id AS subOrderId, product_id AS productId, tid, oid, refund_id AS refundId, refund_state AS refundState, last_refund_state AS lastRefundState, create_time AS createTime, update_time AS updateTime, refunded_fee AS refundedFee, refund_type AS refundType, refund_reason AS refundReason, pay_type AS payType, refund_msg AS refundMsg, refun_log_num AS refunLogNum, refun_log_org AS refunLogOrg, refun_phone AS refunPhone, refun_name AS refunName, refun_address AS refunAddress
+    </sql>
+
+</mapper>

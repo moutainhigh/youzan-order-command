@@ -1,0 +1,21 @@
+
+app:
+  project: bait
+  name: youzanorder
+  role: controller
+  descriptions: 有赞订单服务
+  cluster-name: youzan-order-command
+
+spring:
+  profiles:
+    include:
+    - web
+    - swagger
+    - locale
+    - logging
+    - mybatisplus
+
+mybatis:
+  typeAliasesPackage : "cn.vpclub.youzanorder.entity"
+  #checkConfig-location : false
+  mapper-locations : "classpath:cn/vpclub/youzanorder/mapper/xml/*Mapper.xml"

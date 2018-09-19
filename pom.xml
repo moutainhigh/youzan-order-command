@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>cn.vpclub.youzanorder.command</groupId>
+	<artifactId>youzan-order-command</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>youzan-order-command</name>
+	<description>Demo project for Spring Boot</description>
+
+	<parent>
+		<groupId>cn.vpclub</groupId>
+		<artifactId>spring-boot-starters</artifactId>
+		<version>1.5.19-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<moses-framework.version>1.0.15-SNAPSHOT</moses-framework.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>cn.vpclub</groupId>
+			<artifactId>moses-utils</artifactId>
+			<version>${moses-framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.vpclub</groupId>
+			<artifactId>moses-web</artifactId>
+			<version>${moses-framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.vpclub</groupId>
+			<artifactId>moses-core</artifactId>
+			<version>${moses-framework.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cn.vpclub</groupId>
+			<artifactId>moses-data</artifactId>
+			<version>${moses-framework.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cn.vpclub</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>cn.vpclub</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>cn.vpclub</groupId>
+			<artifactId>spring-boot-starter-swagger</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>cn.vpclub</groupId>
+			<artifactId>spring-boot-starter-cors</artifactId>
+		</dependency>
+
+		<!-- mybatis -->
+		<dependency>
+			<groupId>cn.vpclub</groupId>
+			<artifactId>spring-boot-starter-mybatisplus</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180130</version>
+		</dependency>
+		<!--支付加密jar-->
+		<dependency>
+			<groupId>com.hisun</groupId>
+			<artifactId>hiencrypt</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.9.3</version>
+		</dependency>
+
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<!--指定资源的位置-->
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+	</build>
+
+</project>

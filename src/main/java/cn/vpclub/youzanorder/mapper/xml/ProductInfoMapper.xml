@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.vpclub.youzanorder.mapper.ProductInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.vpclub.youzanorder.entity.ProductInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="sub_order_id" jdbcType="BIGINT" property="subOrderId" />
+    <result column="is_virtual" jdbcType="INTEGER" property="isVirtual" />
+    <result column="outer_item_id" jdbcType="VARCHAR" property="outerItemId" />
+    <result column="pic_thumb_path" jdbcType="VARCHAR" property="picThumbPath" />
+    <result column="item_type" jdbcType="INTEGER" property="itemType" />
+    <result column="num" jdbcType="BIGINT" property="num" />
+    <result column="refunded_fee" jdbcType="DECIMAL" property="refundedFee" />
+    <result column="num_iid" jdbcType="VARCHAR" property="numIid" />
+    <result column="oid" jdbcType="VARCHAR" property="oid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="fenxiao_payment" jdbcType="VARCHAR" property="fenxiaoPayment" />
+    <result column="discount_fee" jdbcType="VARCHAR" property="discountFee" />
+    <result column="buyer_messages" jdbcType="VARCHAR" property="buyerMessages" />
+    <result column="is_present" jdbcType="INTEGER" property="isPresent" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="fenxiao_price" jdbcType="VARCHAR" property="fenxiaoPrice" />
+    <result column="total_fee" jdbcType="VARCHAR" property="totalFee" />
+    <result column="alias" jdbcType="VARCHAR" property="alias" />
+    <result column="payment" jdbcType="VARCHAR" property="payment" />
+    <result column="outer_sku_id" jdbcType="VARCHAR" property="outerSkuId" />
+    <result column="sku_unique_code" jdbcType="VARCHAR" property="skuUniqueCode" />
+    <result column="is_send" jdbcType="INTEGER" property="isSend" />
+    <result column="item_id" jdbcType="VARCHAR" property="itemId" />
+    <result column="sku_id" jdbcType="VARCHAR" property="skuId" />
+    <result column="sku_properties_name" jdbcType="VARCHAR" property="skuPropertiesName" />
+    <result column="pic_path" jdbcType="VARCHAR" property="picPath" />
+    <result column="item_refund_state" jdbcType="VARCHAR" property="itemRefundState" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="order_promotion_details" jdbcType="VARCHAR" property="orderPromotionDetails" />
+    <result column="allow_send" jdbcType="INTEGER" property="allowSend" />
+    <result column="seller_nick" jdbcType="VARCHAR" property="sellerNick" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="created_by" jdbcType="BIGINT" property="createdBy" />
+    <result column="created_time" jdbcType="BIGINT" property="createdTime" />
+    <result column="updated_by" jdbcType="BIGINT" property="updatedBy" />
+    <result column="updated_time" jdbcType="BIGINT" property="updatedTime" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="state_str" jdbcType="VARCHAR" property="stateStr" />
+    <result column="deliver_status" jdbcType="VARCHAR" property="deliverStatus" />
+    <result column="logistics_number" jdbcType="VARCHAR" property="logisticsNumber" />
+    <result column="logistics_company_name" jdbcType="VARCHAR" property="logisticsCompanyName" />
+    <result column="logistics_company_id" jdbcType="VARCHAR" property="logisticsCompanyId" />
+    <result column="refund_status" jdbcType="TINYINT" property="refundStatus" />
+    <!--<result column="refund_id" jdbcType="VARCHAR" property="refundId" />-->
+    <!--<result column="refund_message" jdbcType="VARCHAR" property="refundMessage" />-->
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sub_order_id,is_virtual, outer_item_id, pic_thumb_path, item_type, num, refunded_fee, num_iid,
+    oid, title, fenxiao_payment, discount_fee, buyer_messages, is_present, price, fenxiao_price, 
+    total_fee, alias, payment, outer_sku_id, sku_unique_code, is_send, item_id, sku_id, 
+    sku_properties_name, pic_path, item_refund_state, unit, order_promotion_details, 
+    allow_send, seller_nick, remarks, created_by, created_time, updated_by, updated_time, 
+    deleted,state_str,deliver_status,logistics_number,logistics_company_name,logistics_company_id,refund_status
+  </sql>
+  <select id="queryList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from product_info where 1=1 and deleted = 1
+    <if test="subOrderId != null">
+      and sub_order_id = #{subOrderId,jdbcType=BIGINT}
+    </if>
+  </select>
+
+    <update id="updateProductInfo" parameterType="cn.vpclub.youzanorder.entity.ProductInfo" >
+      update product_info
+      <set>
+        <if test="stateStr != null">
+          state_str = #{stateStr,jdbcType=VARCHAR},
+        </if>
+        <if test="deliverStatus != null">
+          deliver_status = #{deliverStatus,jdbcType=VARCHAR},
+        </if>
+        <if test="logisticsNumber != null">
+          logistics_number = #{logisticsNumber,jdbcType=VARCHAR},
+        </if>
+        <if test="logisticsCompanyName != null">
+          logistics_company_name = #{logisticsCompanyName,jdbcType=VARCHAR},
+        </if>
+        <if test="logisticsCompanyId != null">
+          logistics_company_id = #{logisticsCompanyId,jdbcType=VARCHAR},
+        </if>
+        <if test="remarks != null">
+          remarks = #{remarks,jdbcType=VARCHAR},
+        </if>
+        <if test="updatedBy != null">
+          updated_by = #{updatedBy,jdbcType=BIGINT},
+        </if>
+        <if test="updatedTime != null">
+          updated_time = #{updatedTime,jdbcType=BIGINT},
+        </if>
+      </set>
+      where oid = #{oid,jdbcType=VARCHAR} and sub_order_id = #{subOrderId,jdbcType=BIGINT}
+    </update>
+
+</mapper>

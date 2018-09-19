@@ -1,0 +1,27 @@
+app:
+  datasource:
+      name: bait_thirdparty_service
+      host: mysql-test
+      username: bait
+      password: dRvXNciL2GizIJr39rYWiPlch1ieTB4Ff3JYybLPeOe33zh/QmBqb0o0p0xEdsc5fYghpYCTrWHcFDfAh2s2vw==
+      druid:
+        public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIuLFDTODomoPExKBoWC71AaI9Y1wwQzfcucDjTdIPaylN3uSz/mKhA8yI0CtQWIuto8DofTCGN8J6+YkmWYhDsCAwEAAQ==
+
+logging:
+  level:
+    org.axonframework: debug
+    cn.vpclub: debug
+
+system:
+  url:
+    productDetailUrl: http://192.168.240.126:9093/productDetails/selectProductByCode
+    youZanLogicOrg: http://183.224.41.189/caiyun/youzan/couriers
+    youZanLogicNum: http://183.224.41.189/caiyun/youzan/logisticInfo
+    youZanRefunPayAgree: http://183.224.41.189/caiyun/youzan/aggreeRefund
+    youZanRefunPayRefuse: http://183.224.41.189/caiyun/youzan/refuseRefund
+    youZanRefunGoodAgree: http://183.224.41.189/caiyun/youzan/aggreeReturnGoods
+    youZanRefunGoodRefuse: http://183.224.41.189/caiyun/youzan/refuseReturnGoods
+    smsSend: http://cyyp.ynydhlw.com/light/api/sendSms
+
+pay:
+  payServerUrl: https://act.ynicity.cn:50020/bpg/rpg/service
